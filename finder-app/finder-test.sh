@@ -2,6 +2,40 @@
 # Tester script for assignment 1 and assignment 2
 # Author: Siddhant Jajoo
 
+
+
+# Directory where the script is located
+SCRIPT_DIR=$(dirname "$0")
+
+# Clean build artifacts
+echo "Cleaning previous build artifacts..."
+rm -f "${SCRIPT_DIR}/writer" "${SCRIPT_DIR}"/*.o
+
+# Compile writer application using native compilation
+echo "Compiling writer application..."
+gcc -o "${SCRIPT_DIR}/writer" "${SCRIPT_DIR}/writer.c" -Wall
+
+# Check if compilation was successful
+if [ $? -ne 0 ]; then
+    echo "Compilation failed."
+    exit 1
+fi
+
+# Use the writer utility instead of writer.sh
+
+# Assuming the usage of writer is "./writer <file> <string>"
+# and you have paths or parameters for <file> and <string>
+
+#FILE_PATH="/path/to/file.txt"
+#WRITE_STRING="This is a test string"
+
+# Replace calls to writer.sh with calls to the compiled writer application
+#echo "Running writer to create ${FILE_PATH} with content: '${WRITE_STRING}'"
+#"${SCRIPT_DIR}/writer" "${FILE_PATH}" "${WRITE_STRING}"
+
+
+# Your existing logic for the finder-test.sh script continues here...
+
 set -e
 set -u
 
@@ -54,7 +88,7 @@ fi
 
 for i in $( seq 1 $NUMFILES)
 do
-	./writer.sh "$WRITEDIR/${username}$i.txt" "$WRITESTR"
+	./writer "$WRITEDIR/${username}$i.txt" "$WRITESTR"
 done
 
 OUTPUTSTRING=$(./finder.sh "$WRITEDIR" "$WRITESTR")
