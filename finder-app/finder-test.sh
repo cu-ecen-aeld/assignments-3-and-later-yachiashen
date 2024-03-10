@@ -3,7 +3,7 @@
 # Author: Siddhant Jajoo
 
 
-
+:<<COMMENT
 # Directory where the script is located
 SCRIPT_DIR=$(dirname "$0")
 
@@ -32,7 +32,7 @@ fi
 # Replace calls to writer.sh with calls to the compiled writer application
 #echo "Running writer to create ${FILE_PATH} with content: '${WRITE_STRING}'"
 #"${SCRIPT_DIR}/writer" "${FILE_PATH}" "${WRITE_STRING}"
-
+COMMENT
 
 # Your existing logic for the finder-test.sh script continues here...
 
@@ -88,7 +88,7 @@ fi
 
 for i in $( seq 1 $NUMFILES)
 do
-	./writer "$WRITEDIR/${username}$i.txt" "$WRITESTR"
+	./writer.sh "$WRITEDIR/${username}$i.txt" "$WRITESTR"
 done
 
 OUTPUTSTRING=$(./finder.sh "$WRITEDIR" "$WRITESTR")
